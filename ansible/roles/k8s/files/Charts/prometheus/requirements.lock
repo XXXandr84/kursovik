@@ -1,0 +1,12 @@
+dependencies:
+- name: kube-state-metrics
+  repository: file://../kube-state-metrics
+  version: 2.8.14
+- name: nginx-ingress
+  repository: file://../nginx-ingress
+  version: 1.41.3
+- name: grafana
+  repository: file://../grafana
+  version: 5.5.7
+digest: sha256:8e9e252c425654e73ca630aef5a4ee7e0866e680b484bfeb903fc67fa98adc56
+generated: "2021-02-10T10:56:21.029826188-08:00"

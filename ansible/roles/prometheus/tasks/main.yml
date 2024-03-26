@@ -1,0 +1,24 @@
+---
+# tasks file for prometheus
+
+- name: Prepare For Install Prometheus
+  include_tasks: tasks/prepare.yml
+
+- name: Install Prometheus
+  include_tasks: tasks/install_prometheus.yml
+
+- name: Install Alertmanager
+  include_tasks: tasks/install_alertmanager.yml
+
+## tasks copy Prometheus file
+- name: tasks copy prometheus file
+  copy:
+     src: files/prometheus.yml
+     dest: /etc/prometheus/prometheus.yml
+     owner: ubuntu
+     group: ubuntu
+     mode: '0777'
+
+- name: restart prometheus
+  shell: sudo systemctl restart prometheus
+  become: true

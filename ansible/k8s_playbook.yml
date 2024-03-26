@@ -1,0 +1,37 @@
+---
+- name: Deploy k8s on master
+  hosts: master
+  become: true
+
+  roles:
+    - docker
+    - k8s
+    - master_init
+    - calico
+    - helm
+
+- name: Deploy k8s on worker
+  hosts: workers
+  become: true
+
+  roles:
+    - docker
+    - k8s
+    - join_worker
+
+#- name: Gitlab
+#  hosts: gitlab
+#  become: true
+
+#  roles:
+#    - gitlab
+
+#- name: Prometheus
+#  hosts: prometheus
+#  become: true
+
+#  roles:
+#    - prometheus
+#    - grafana
+
+

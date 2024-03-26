@@ -1,0 +1,19 @@
+---
+k8s_required_packages:
+  - apt-transport-https
+  - ca-certificates
+  - curl
+
+k8s_version: 1.19.14-00
+#k8s_version: 1.28.8
+
+k8s_signing_key: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+#k8s_repo: "deb https://packages.kubernetes.io/ kubernetes-xenial main"
+k8s_repo: "deb https://apt.kubernetes.io/ kubernetes-jammy main"
+#k8s_repo: "deb https://apt.kubernetes.io/ kubernetes-fossa main"
+#k8s_repo: "deb http://packages.cloud.google.com/apt/ kubernetes-xenial InRelease"
+k8s_packages:
+  - kubelet={{ k8s_version }}
+  - kubeadm={{ k8s_version }}
+  - kubectl={{ k8s_version }}
+k8s_user: ubuntu

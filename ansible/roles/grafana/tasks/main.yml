@@ -1,0 +1,28 @@
+---
+# tasks file for grafana
+ - name: copy a Grafana from local machine to remote machine with owner and permissions
+   copy:
+      src: ../../../../grafana_10.4.0_amd64.deb
+      dest: /home/ubuntu/grafana_10.4.0_amd64.deb
+      owner: ubuntu
+      group: ubuntu
+      mode: '0777'
+
+ - name: add user
+   shell: apt-get install -y adduser libfontconfig1 musl
+   become: true
+
+ - name: dpkg install
+   shell: sudo dpkg -i grafana_10.4.0_amd64.deb
+   become: true
+
+# - name: Update system packages and clean up
+#   ansible.builtin.shell: |
+#    apt-get install -y adduser libfontconfig1 musl &&
+#    cd /home/ubuntu/ &&
+#    dpkg -i grafana_10.4.0_amd64.deb -y
+
+ - name: restart grafana
+   shell: sudo systemctl start grafana-server
+   become: true
+

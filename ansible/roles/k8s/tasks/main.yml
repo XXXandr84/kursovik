@@ -1,0 +1,96 @@
+---
+ - name: Update repositories and install required packages
+   apt:
+     name: "{{ item }}"
+     state: present
+     update_cache: yes
+   loop: "{{ k8s_required_packages }}"
+
+ - name: Add Google Cloud public signing key
+   apt_key:
+     url: "{{ k8s_signing_key }}"
+     state: present
+############################
+## tasks copy kub file
+ - name: tasks copy kub file
+   copy:
+      src: files/script.sh
+      dest: /home/ubuntu/script.sh
+      owner: ubuntu
+      group: ubuntu
+      mode: '0777'
+
+ - name: tasks copy kub run file
+   copy:
+      src: files/script2.sh
+      dest: /home/ubuntu/script2.sh
+      owner: ubuntu
+      group: ubuntu
+      mode: '0777'
+
+
+# - name: tasks copy dashboard.yml file
+#   copy:
+#      src: files/dashboard.yml
+#      dest: /home/ubuntu/dashboard.yml
+#      owner: ubuntu
+#      group: ubuntu
+#      mode: '0777'
+
+
+ - name: Run a script on a remote node
+   ansible.builtin.script:
+#      cmd: /home/ubuntu/script.sh 
+      cmd: files/script.sh
+   become: true
+
+# - name: Run a script on a remote node
+#   ansible.builtin.script:
+##      cmd: /home/ubuntu/script2.sh 
+#      cmd: files/script2.sh
+#   become: true
+
+#    chdir: 
+#  ansible.builtin.script:
+#    cmd:# - name: mkdir  dir
+#   ansible.builtin.shell: mkdir  /etc/apt/keyrings
+
+#     deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list &&
+#     curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg &&
+#     sudo apt-get update -y
+#   become: true
+
+# - name: update package cache after adding repository
+#   apt:
+#     update_cache: yes
+########################
+ - name: install Kubernetes components
+   apt:
+     name:
+       - kubelet
+       - kubeadm
+       - kubectl
+     state: present
+########################
+# - name: Copy content of Kuber 'files'
+#   copy:
+#     src: files/Charts/    # note the '/' <-- !!!
+#     dest: /home/ubuntu/Charts/
+
+ - name: Copy content of Kuber 'files'
+   copy:
+     src: files/Apps/    # note the '/' <-- !!!
+     dest: /home/ubuntu/Apps/
+
+
+#- name: Add the Kubernetes apt repository
+#  apt_repository:
+#    repo: "{{ k8s_repo }}"
+#    state: present
+
+#- name: Install Kubernetes binaries
+#  apt:
+#    pkg: "{{ item }}"
+#    update_cache: yes
+#    force: true
+#  loop: "{{ k8s_packages }}"

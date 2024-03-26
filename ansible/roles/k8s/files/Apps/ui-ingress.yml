@@ -1,0 +1,29 @@
+---
+apiVersion: networking.k8s.io/v1 # extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ui
+  namespace: default
+#
+  labels:
+    app: search-engine
+    component: ui
+
+#  annotations:
+#    k8s.io/ingress.allow-http: "true"
+spec:
+#  tls:
+#  - secretName: ui-ingress
+  rules:
+#    - host: 158.160.119.222
+     - http:
+      paths:
+        - pathType: Prefix
+          path: "/"
+          backend:
+            service:
+              name: ui
+              port:
+                number: 8000
+
+#      pathType: Prefix # ImplementationSpecific

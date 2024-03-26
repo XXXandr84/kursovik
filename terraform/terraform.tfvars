@@ -1,0 +1,10 @@
+cloud_id                 = "b1gks1e9rlvg2griti9l"
+folder_id                = "b1g3ag9m932ds92jhgtr"
+image_id                 = "fd8ngj7246dt52oo9ckh"
+public_key_path          =  "~/.ssh/id_ed25519.pub"
+# public_key_path        = "/home/xandr/.ssh/id_ed25519.pub"
+subnet_id                = "e9b3c3psr2ev2v2di99u"
+service_account_key_file = "/home/xandr/otus/yandex/key.json"
+# private_key_path       = "/home/xandr/.ssh/id_ed25519"
+private_key_path         = "~/.ssh/id_ed25519"
+instance_count           = 6

@@ -1,0 +1,13 @@
+---
+service:
+  internalPort: 8000
+  externalPort: 8000
+
+image:
+  repository: funnyfatty/search_crawler
+  tag: "1.0"
+
+mongodbHost:
+rabbitmqHost:
+rabbitmqUser: "guest"
+rabbitmqPassword: "guest"

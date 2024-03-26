@@ -1,0 +1,22 @@
+instances:
+- name: elastic-0
+  dns:
+    - elastic-0.es-cluster
+    - localhost
+    - es-cluster
+  ip:
+    - 127.0.0.1
+- name: elastic-1
+  dns:
+    - elastic-1.es-cluster
+    - localhost
+    - es-cluster
+  ip:
+    - 127.0.0.1
+- name: elastic-2
+  dns:
+    - elastic-3.es-cluster
+    - localhost
+    - es-cluster
+  ip:
+    - 127.0.0.1

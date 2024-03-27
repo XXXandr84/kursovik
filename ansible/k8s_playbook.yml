@@ -19,19 +19,19 @@
     - k8s
     - join_worker
 
-#- name: Gitlab
-#  hosts: gitlab
-#  become: true
+- name: Gitlab
+  hosts: gitlab
+  become: true
 
-#  roles:
-#    - gitlab
+  roles:
+    - gitlab
 
-#- name: Prometheus
-#  hosts: prometheus
-#  become: true
+- name: Prometheus
+  hosts: prometheus
+  become: true
 
-#  roles:
-#    - prometheus
-#    - grafana
+  roles:
+    - prometheus
+    - grafana
 
 
